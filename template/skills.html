@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>ResuMatic</title>
+        <meta charset="UTF-8">
+        <meta name="viewport"
+            content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css'>
+        <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.css'>
+        <link rel="stylesheet" href="../static/CSS/home_style.css">
+        <link rel="stylesheet" href="../static/CSS/navbar.css">
+
+    </head>
+
+    <div class="home" >
+        <!-- partial:index.partial.html -->
+        <nav class="navbar navbar-expand-custom navbar-mainbg">
+            <a class="navbar-brand navbar-logo" href="">ResuMatic</a>
+            <button class="navbar-toggler" type="button" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <i class="fas fa-bars text-white"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <div class="hori-selector">
+                        <div class="left"></div>
+                        <div class="right"></div>
+                    </div>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="/home"><i class="far far fa-copy"></i>Drop a file</a>
+                      </li>
+                      <li class="nav-item active">
+                        <a class="nav-link" href="/skills"><i class="fas fa-laptop-code"></i>Skills</a>
+                      </li>
+            
+                      <li class="nav-item ">
+                        <a class="nav-link" href="/search"><i class="fas fa-search"></i>Search</a>
+                      </li>
+                      <li class="nav-item">
+                        <!-- <a class="nav-link" href="javascript:void(0);"><i class="far fa-calendar-alt"></i>Calendar</a> -->
+                      </li>
+                      <li class="nav-item">
+                        <!-- <a class="nav-link" href="javascript:void(0);"><i class="far fa-chart-bar"></i>Charts</a> -->
+                      </li>
+                      <li class="nav-item">
+                        <!-- <a class="nav-link" href="javascript:void(0);"><i class="far fa-copy"></i>Documents</a> -->
+                      </li>
+                    
+                </ul>
+            </div>
+        </nav>
+        <div class="upload" style="margin:auto; margin-top: 40px; width:80%">
+            <form method="get" enctype="multipart/form-data" action="">
+                {% csrf_token %}
+                <select name="Job_Category">
+                    <option value="ALL">ALL</option>
+                    <option value="INFORMATION-TECHNOLOGY">INFORMATION-TECHNOLOGY</option>
+                    <option value="FINANCE">FINANCE</option>
+                </select>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+        <div class="graph" style="width:80%; margin:auto; padding:60px">
+            {{ plot_div|safe }}
+        </div>
+
+        <div class="foot"></div>
+    </div>

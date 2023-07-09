@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Oswald:700|Neuton" rel="stylesheet" type="text/css">
+    <link href="{% static 'CSS/landing_style.css' %}" rel="stylesheet" type="text/css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+    <title>ResuMatic</title>
+</head>
+<body>  
+    <p> <span style="font-family: 'Orbitron', cursive;">ResuMatic</span> &mdash; easy way to parse your resume &mdash;</p>
+    <!-- Flex Container -->
+    <div id="container">
+        <a href="/home">
+        <div class="button" id="button-7" style="color: #1357BE;">
+            <div id="dub-arrow"><img src="{% static 'image/arrow.png' %}" alt="" /></div>
+            Continue
+          </div>
+        </a>
+    </div>
+</body>
+</html>
+

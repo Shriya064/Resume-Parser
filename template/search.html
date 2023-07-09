@@ -1,0 +1,123 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>ResuMatic</title>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css'>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.css'>
+    <link rel="stylesheet" href="../static/CSS/navbar.css">
+    <link rel="stylesheet" href="../static/CSS/result.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+
+  </head>
+
+  <body>
+    <!-- partial:index.partial.html -->
+    <nav class="navbar navbar-expand-custom navbar-mainbg">
+      <a href="/home"><div class="navbar-brand navbar-logo" href="" style="font-family: 'Orbitron', cursive;">ResuMatic</div></a>
+      <button class="navbar-toggler" type="button" aria-controls="navbarSupportedContent" aria-expanded="false"
+        aria-label="Toggle navigation">
+        <i class="fas fa-bars text-white"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+          <div class="hori-selector">
+            <div class="left"></div>
+            <div class="right"></div>
+          </div>
+          <li class="nav-item ">
+            <a class="nav-link" href="/home"><i class="far far fa-copy"></i>Drop a file</a>
+          </li>
+
+          <li class="nav-item active">
+            <a class="nav-link" href="/search"><i class="fas fa-search"></i>Search</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="javascript:void(0);"><i class="fa "></i> </a>
+          </li>
+          <li class="nav-item">
+            <!-- <a class="nav-link" href="javascript:void(0);"><i class="far fa-chart-bar"></i>Charts</a> -->
+          </li>
+          <li class="nav-item">
+            <!-- <a class="nav-link" href="javascript:void(0);"><i class="far fa-copy"></i>Documents</a> -->
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="search"
+      style="background: url(../static/image/bg_image.jpg);min-height:100vh;height: 100%;width: 100vw;background-size: cover;background-repeat: no-repeat;">
+      <h1 style="text-align:center; width:100%; padding: 40px;">Search Parsed Resumes for required Skill</h1>
+      <div style="padding-top: 20px; padding-left: 40px;">
+        <form method="GET" action="" style="text-align: center;">
+          {% csrf_token %}
+          <input type="text" name="skill" placeholder="Enter skill" value="" style="padding: 2px 20px 7px 10px ;">
+          <button class="btn btn-primary" type="submit">Search</button>
+        </form>
+      </div>
+      <div style="padding-top: 30px;">
+        {% if skill and results %}
+        <h2 style="padding: 45px; text-align: center;">Search Results for "{{ skill }}"</h2>
+        <table style="width: 85%; margin: auto; border-collapse: collapse; border-radius: 10px; overflow: hidden;">
+          <colgroup>
+            <col style="width: 15%; padding: 0 10px;">
+            <col style="width: 10%; padding: 0 10px;">
+            <col style="width: 20%; padding: 0 10px;">
+            <col style="width: 15%; padding: 0 10px;">
+            <col style="width: 40%; padding: 0 10px;">
+          </colgroup>
+          <thead>
+            <tr>
+              <th
+                style="text-align: center; height: 50px; background-color: #002244;color: white; border-radius: 10px 0 0 0;">
+                PDF Name</th>
+              <th style="text-align: center; height: 50px; background-color: #002244;color: white;">Name</th>
+              <th style="text-align: center; height: 50px; background-color: #002244;color: white;">Email</th>
+              <th style="text-align: center; height: 50px; background-color: #002244;color: white;">Contact</th>
+              <th
+                style="text-align: center; height: 50px; background-color: #002244;color: white; border-radius: 0 10px 0 0;">
+                All Skills</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for result in results %}
+            <tr>
+              <td style="padding: 20px 10px ; border: 1px solid black;">{{ result.pdf_name }}</td>
+              <td style="padding: 20px 10px ; border: 1px solid black;">{{ result.name }}</td>
+              <td style="padding: 20px 10px ; border: 1px solid black;">{{ result.email }}</td>
+              <td style="padding: 20px 10px ; border: 1px solid black;">{{ result.mobile }}</td>
+              <td style="padding: 20px 10px ; border: 1px solid black;">
+                {% for skill in result.skills %}
+                {{ skill }}
+                <!-- <br> -->
+                {% endfor %}
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+
+        </ul>
+        {% elif skill %}
+        <p>No results found for "{{ skill }}"</p>
+        {% endif %}
+      </div>
+
+    </div>
+    <script src='https://code.jquery.com/jquery-3.4.1.min.js'></script>
+    <script src='https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js'></script>
+    <script src='https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js'></script>
+    <script src="static/CSS/navbar_script.js"></script>
+
+  </body>
+
+</html>

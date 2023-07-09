@@ -1,0 +1,21 @@
+.result{
+    /* height: ; */
+    /* width: 100%; */
+    margin: auto;
+    background: url("../image/bg_image.jpg");
+    min-height: 100vh;
+    width: 100vw;
+    background-size: cover; 
+    background-repeat: no-repeat;
+
+}
+
+.result h1{
+    text-align: center;
+    padding: 20px;
+    
+}
+.table{
+    margin: auto auto;
+    width: 80%;
+}
